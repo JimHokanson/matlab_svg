@@ -1,31 +1,19 @@
 classdef color < handle
     %
     %   Class for handling Matlab color
-    
-    
 
-    
-    properties (Dependent)
-       rgb  %NOTE: We could make this a vector as well ...
-       %When would it be a matrix or vector? 
-    end
-
-    properties
-       is_color = true %Meed to handle color 'none'
-    end
-    
-    
-    properties (Hidden)
-        
-    end
-    
-    methods
-        function obj = color(value)
-           if ischar(value) 
-               
+    methods (Static)
+        function flag = isColor(temp)
+            if ischar(temp)
+               flag = isempty(temp) || strcmp(temp,'none');
            else
-               
-           end
+               flag = isempty(rgb); 
+           end 
+        end
+        
+        function obj = createSVG(value)
+           obj = SVG.attribute.color(value);
+           %Might need to put more in here later 
         end
     end
     

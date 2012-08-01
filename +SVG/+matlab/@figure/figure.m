@@ -24,8 +24,11 @@ classdef figure < SVG.matlab.graphic_object
     
     properties
        fig_color
-       invert_hardcopy
-        
+       
+       invert_hardcopy %(logical) This property can have some wicked effects on the resulting figure. To a first approximation it just makes it so that there is no fill.
+       %
+       
+       
        %NOTE: Eventually I want to make this an object ...
        original_show_hidden_handles
        original_figure_units
@@ -35,7 +38,8 @@ classdef figure < SVG.matlab.graphic_object
     methods
         function obj = figure(h)
            obj@SVG.matlab.graphic_object(h);
-           obj.invert_hardcopy = 
+           obj.fig_color = get(h,'Color');
+           obj.invert_hardcopy = strcmp(get(h,'InvertHardcopy'),'on');
         end
     end
     

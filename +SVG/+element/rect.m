@@ -3,12 +3,12 @@ classdef rect < SVG.element
     %http://www.w3.org/TR/SVG/shapes.html#RectElement
     
     properties
-       x
-       y
-       width
-       height
-       fill
-       stroke
+       x = 0    %coordinate
+       y = 0    %coordinate
+       width    %length
+       height   %length
+       fill     %color
+       stroke   %stroke
     end
     
     properties (Constant,Hidden)

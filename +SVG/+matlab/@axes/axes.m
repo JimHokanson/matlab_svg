@@ -43,7 +43,7 @@ classdef axes < SVG.matlab.graphic_object
 % ColorOrder: [7x3 double]                  IGNORE
 % CreateFcn: ''                             IGNORE
 % CurrentPoint: [2x3 double]                IGNORE
-% DataAspectRatio: [4.5000 10 1]            
+% DataAspectRatio: [4.5000 10 1]            ???
 % DataAspectRatioMode: 'auto'
 % DeleteFcn: ''
 % DrawMode: 'normal'
@@ -81,7 +81,7 @@ classdef axes < SVG.matlab.graphic_object
 % UserData: []
 % View: [0 90]
 % Visible: 'on'
-% XAxisLocation: 'bottom'
+% XAxisLocation: 'bottom'               ??????
 % XColor: [0 0 0]
 % XDir: 'normal'
 % XGrid: 'off'
@@ -91,11 +91,11 @@ classdef axes < SVG.matlab.graphic_object
 % XMinorGrid: 'off'
 % XMinorTick: 'off'
 % XScale: 'linear'
-% XTick: [1 2 3 4 5 6 7 8 9 10]
-% XTickLabel: [10x2 char]
-% XTickLabelMode: 'auto'
-% XTickMode: 'auto'
-% YAxisLocation: 'left'
+% XTick: [1 2 3 4 5 6 7 8 9 10]         TICK_OBJ
+% XTickLabel: [10x2 char]               TICK_OBJ
+% XTickLabelMode: 'auto'                IGNORE
+% XTickMode: 'auto'                     IGNORE
+% YAxisLocation: 'left'                 ????
 % YColor: [0 0 0]
 % YDir: 'normal'
 % YGrid: 'off'
@@ -178,10 +178,9 @@ classdef axes < SVG.matlab.graphic_object
     %Annotation - wtf is this? why undocumented
     
     properties
-       ActivePositionProperty %{outerposition} | position
-       ALim %[amin, amax]
-       %ALimMode - {auto} | manual
-       CLim
+       %NOTE: Instead of tick_label and tick_mark_set I think
+       %I want to combine these into one object since they are linked ...
+       tick_obj
     end
     
     %NYI
@@ -192,7 +191,7 @@ classdef axes < SVG.matlab.graphic_object
     methods
         function obj = axes(h,p)
            obj@SVG.matlab.graphic_object(h,p);
-           keyboard
+           formattedWarning('Axes not yet finished')
         end
         
         

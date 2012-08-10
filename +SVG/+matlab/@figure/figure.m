@@ -23,10 +23,11 @@ classdef figure < SVG.matlab.graphic_object
     
     
     properties
-       fig_color
+       fig_color       %(prop 'Color'
        
-       invert_hardcopy %(logical) This property can have some wicked effects on the resulting figure. To a first approximation it just makes it so that there is no fill.
-       %
+       invert_hardcopy %(logical, from prop 'InvertHardcopy') This property can have some 
+       %wicked effects on the resulting figure. To a first approximation it just makes 
+       %it so that there is no fill.
        
        
        %NOTE: Eventually I want to make this an object ...

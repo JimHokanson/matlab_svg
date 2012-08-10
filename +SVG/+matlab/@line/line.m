@@ -1,39 +1,52 @@
 classdef line < SVG.matlab.graphic_object
-    
+    %
+    %
+    %   REMAINING ISSUES
+    %   --------------------------------------
+    %   - toSVG needs to be implemented
+    %   - use tag or DisplayName????? for name?
+    %   - ensure no children
+    %   - handle Annotation????
+    %   - not sure where to put stroke code ...
+    %
+    %   doc patch_props
     
     %http://www.w3.org/TR/SVG/shapes.html#LineElement
-    
-    %SVG LINE STUFFS
-    %================================================
-    %x1,y1,x2,y2
-    %transform
-    %style
-    %class
-    
-    %NOTE: line and stroke should inherit from common ancestor (maybe)
-    
-    %LINESTYLES
-    %-----------------------------------------
-    
-    %Where to put options????
-    %=======================================
-    %path or polyline
-    %
-    
-    properties
-       style  %  - | --| {:} | -. | none
-       width
+
+    properties %NOTE: All props should be read only ...
+       line_style  %  - | --| {:} | -. | none
+       line_width  %
+       
+       marker_type %
+       marker_size
+       marker_edge_color
+       marker_face_color
+       
        x
        y
+       z
        %NOTE: need to figure out translation between
        %x and y in figure and x and y in in reality
        
     end
     
+
+    
     methods
-        function obj = line(h)
-           obj@SVG.matlab.graphic_object(h);
-           keyboard
+        function obj = line(h,p)
+           obj@SVG.matlab.graphic_object(h,p);
+           
+           obj.line_style  = get(h,'LineStyle');
+           obj.line_width  = get(h,'LineWidth');
+           
+           obj.marker_type = get(h,'Marker');
+           obj.marker_size = get(h,'MarkerSize');
+           obj.marker_edge_color = get(h,'MarkerEdgeColor');
+           obj.marker_face_color = get(h,'MarkerFaceColor');
+           
+           obj.x = get(h,'XData');
+           obj.y = get(h,'YData');
+           obj.z = get(h,'ZData');
         end
     end
     

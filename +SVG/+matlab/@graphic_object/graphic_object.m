@@ -1,7 +1,5 @@
-classdef graphic_object < handle
-    %UNTITLED4 Summary of this class goes here
-    %   Detailed explanation goes here
-    
+classdef graphic_object < handle & matlab.mixin.Heterogeneous
+    %
     %axes
     %figure
     %hggroup
@@ -15,15 +13,19 @@ classdef graphic_object < handle
     %surface
     %text
     %uicontrolmenu
+    
     properties
-        name
-        h
-        parent
-        children
+        name        %Should I make this the tag?  
+        tag
+        type
+        h           %handle to graphics object
+        parent      %ref to parent object
+        children    %array of children
     end
     
     properties (Hidden)
-       s 
+       s %structure of object
+       %Not sure if I am going to use this or not ...
     end
     
     methods
@@ -38,24 +40,31 @@ classdef graphic_object < handle
               obj.parent = p; 
            end
             
-           obj.s = get(h);
+           obj.s    = get(h);
+           obj.tag  = get(h,'tag');
+           obj.type = get(h,'type');
+           
+           
            c_all = get(h,'children');
            nChildren = length(c_all);
            if nChildren > 0
                temp(1,nChildren) = SVG.matlab.graphic_object;
-               obj.children = temp;
                clear temp
-               for iC = nChildren
+               for iC = 1:nChildren
                   c = c_all(iC);
                   cur_type = get(c,'Type');
                   switch cur_type
                       case 'axes'
-                          temp = SVG.matlab.axes(c,obj);
+                          temp(iC) = SVG.matlab.axes(c,obj);
+                      case 'line'
+                          temp(iC) = SVG.matlab.line(c,obj);
+                      case 'patch'
+                          temp(iC) = SVG.matlab.graphic_object(c,obj);
                       otherwise
                           error('Type: "%s" not yet implemented',cur_type)
                   end
-                  obj.children(iC) = temp;
                end
+               obj.children = temp;
            end
         end
     end

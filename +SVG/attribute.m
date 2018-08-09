@@ -1,11 +1,13 @@
 classdef attribute < handle
     %
+    %   Class:
+    %   svg.attribute
     
     properties
     end
     
     methods (Abstract)
-        toPropString(obj)
+        str = toString(obj)
     end
     
 end

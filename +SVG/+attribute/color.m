@@ -1,4 +1,4 @@
-classdef color
+classdef color < svg.attribute
     %
     %http://www.w3.org/TR/SVG/types.html#DataTypeColor
     %
@@ -19,7 +19,14 @@ classdef color
     
     properties
        value
-       %Will this ever need to be a vector
+       %Will this ever need to be a vector?
+       
+       %color
+       %color-interpolation
+       %color-interpolation-filters
+       %color-profile
+       %color-rendering
+       
     end
     
     methods
